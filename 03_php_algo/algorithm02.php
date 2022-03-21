@@ -18,7 +18,7 @@
 // 100円玉で購入した場合、
 // 50円足りません。
 
-$yen = 10000;   // 購入金額
+$yen = 0;   // 購入金額
 $product = 150; // 商品金額
 
 function calc($yen, $product)
@@ -38,16 +38,16 @@ function calc($yen, $product)
         echo $change."円足りません。";
     } else {
         foreach ($coin_type as $value) {
-        //枚数=お釣り/金種別
+            //枚数=お釣り/金種別
             $num = floor($change / $value);
-        //枚数を保存
+            //枚数を保存
             $result[$value] = $num;
-        //お釣りの余りを更新
+            //お釣りの余りを更新
             $change = $change - ($value*$num);
         }
     }
-    foreach ($result as $key => $value) {
-        echo $key . '円 x ' . $value . '枚, ';
+    foreach ($result as $money => $count) {
+        echo $money . "円 x " . $count . "枚, ";
     }
 }
 //円札と円玉での結果表示
