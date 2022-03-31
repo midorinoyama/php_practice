@@ -18,7 +18,7 @@
 // 100円玉で購入した場合、
 // 50円足りません。
 
-$yen = 0;   // 購入金額
+$yen = 10000;   // 購入金額
 $product = 150; // 商品金額
 
 function calc($yen, $product)
@@ -45,15 +45,12 @@ function calc($yen, $product)
             //お釣りの余りを更新
             $change = $change - ($value*$num);
         }
+        return $result;
     }
-    foreach ($result as $money => $count) {
-        echo $money . "円 x " . $count . "枚, ";
-    }
+    // foreach ($result as $money => $count) {
+    //     echo $money . "円 x " . $count . "枚, ";
+    //}
 }
-//円札と円玉での結果表示
-//echo "10000円札x".$result[0]."枚、5000円札x".$result[1]."枚、1000円札x".$result[2]."枚、500円玉x".
-//    $result[3]."枚、100円玉x".$result[4]."枚、50円玉x".$result[5]."枚、10円玉x".$result[6].
-//    "枚、5円玉x".$result[7]."枚、1円玉x".$result[8]."枚";
 
 ?>
 <!DOCTYPE html>
@@ -68,7 +65,16 @@ function calc($yen, $product)
     <?php ?>
     <section>
         <!-- ここに結果表示 -->
-        <?php calc($yen, $product); ?>
+        <?php
+        $ret = calc($yen, $product);
+        //print_r($ret);
+        foreach ($ret as $key => $value) {
+            if ($key >= 1000) {
+                echo $key."円札x".$value."枚、";
+            } else {
+                echo $key."円玉x".$value."枚、";
+            }
+        } ?>
     </section>
 </body>
 </html>
